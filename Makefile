@@ -15,9 +15,9 @@ TEX_ENGINE = pdflatex
 BIB_ENGINE = bibtex
 
 # Build targets
-all: $(MAIN_FILE).pdf
+all: $(BUILD_DIR)/$(MAIN_FILE).pdf
 
-$(MAIN_FILE).pdf: $(SRC_DIR)/$(MAIN_FILE).tex $(SRC_DIR)/$(MAIN_FILE).bib
+$(BUILD_DIR)/$(MAIN_FILE).pdf: $(SRC_DIR)/$(MAIN_FILE).tex $(SRC_DIR)/$(MAIN_FILE).bib
 	@echo "Preparing build directory..."
 	@mkdir -p $(BUILD_DIR)
 	@cp $(SRC_DIR)/$(MAIN_FILE).tex $(BUILD_DIR)/
@@ -31,17 +31,16 @@ $(MAIN_FILE).pdf: $(SRC_DIR)/$(MAIN_FILE).tex $(SRC_DIR)/$(MAIN_FILE).bib
 		         $(BIB_ENGINE) $(MAIN_FILE) && \
 		         $(TEX_ENGINE) $(MAIN_FILE).tex && \
 		         $(TEX_ENGINE) $(MAIN_FILE).tex"
-	@cp $(BUILD_DIR)/$(MAIN_FILE).pdf .
-	@echo "Build complete: $(MAIN_FILE).pdf"
+	@echo "Build complete: $(BUILD_DIR)/$(MAIN_FILE).pdf"
 
 clean:
 	@echo "Cleaning build directory..."
 	@rm -rf $(BUILD_DIR)/*
 	@echo "Clean complete"
 
-distclean: clean
-	@echo "Removing PDF output..."
-	@rm -f $(MAIN_FILE).pdf
+distclean:
+	@echo "Removing all build artifacts and outputs..."
+	@rm -rf $(BUILD_DIR)
 	@echo "Distclean complete"
 
 # Help target

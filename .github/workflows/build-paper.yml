@@ -1,0 +1,37 @@
+name: Build LaTeX Paper
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Install Podman
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install podman
+          podman --version
+      
+      - name: Build PDF with Podman
+        run: make CONTAINER_ENGINE=podman
+      
+      - name: Verify PDF was created
+        run: |
+          ls -lh build/colour_selection_theory.pdf
+          echo "Pages: $(pdfinfo build/colour_selection_theory.pdf | grep Pages || echo 'pdfinfo not available')"
+      
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: paper-${{ github.sha }}
+          path: build/colour_selection_theory.pdf
+          retention-days: 30
+

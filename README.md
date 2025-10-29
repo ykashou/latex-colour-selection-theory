@@ -8,7 +8,7 @@ Research framework for wavelength-based colour palette generation beyond traditi
 [![License: ACE](https://img.shields.io/badge/License-ACE-blue.svg)](./LICENSE)
 [![LaTeX](https://img.shields.io/badge/LaTeX-TeX%20Live%202025-008080.svg)](https://www.tug.org/texlive/)
 
-[PDF](./colour_selection_theory.pdf) • [Documentation](./docs) • [Report Issue](https://github.com/ykashou/latex-colour-selection-theory/issues)
+[PDF](./build/colour_selection_theory.pdf) • [Documentation](./docs) • [Report Issue](https://github.com/ykashou/latex-colour-selection-theory/issues)
 
 </div>
 
@@ -52,27 +52,25 @@ cd latex-colour-selection-theory
 make
 
 # View result
-open colour_selection_theory.pdf
+open build/colour_selection_theory.pdf
 ```
 
-### Local Development
-
-```bash
-# If you have TeX Live installed locally
-pdflatex colour_selection_theory.tex
-bibtex colour_selection_theory
-pdflatex colour_selection_theory.tex
-pdflatex colour_selection_theory.tex
-```
+**Note**: This project uses containerized builds exclusively. No local TeX Live installation is required or supported.
 
 ## 📁 Project Structure
 
 ```
 latex-colour-selection-theory/
-├── colour_selection_theory.tex      # Main LaTeX source
-├── colour_selection_theory.pdf      # Compiled PDF
-├── colour_selection_theory.bib      # Bibliography
-├── *.aux, *.bbl, *.log              # Build artifacts
+├── src/                              # Source files
+│   ├── colour_selection_theory.tex  # Main LaTeX source
+│   └── colour_selection_theory.bib  # Bibliography
+├── build/                            # Build artifacts (gitignored)
+│   ├── colour_selection_theory.pdf  # Compiled PDF
+│   └── *.aux, *.bbl, *.log          # Compilation files
+├── .cursor/                          # IDE rules and commands
+│   ├── rules/                        # Project guidelines
+│   └── commands/                     # Helper commands
+├── Makefile                          # Build automation
 └── README.md
 ```
 
@@ -241,7 +239,7 @@ git tag -a v1.0.0 -m "Release v1.0.0"
 git push origin v1.0.0
 
 # Upload PDF to GitHub Releases
-gh release create v1.0.0 colour_selection_theory.pdf
+gh release create v1.0.0 build/colour_selection_theory.pdf
 ```
 
 ## 🤝 Contributing

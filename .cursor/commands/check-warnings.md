@@ -1,7 +1,7 @@
 Find all LaTeX warnings in the compilation log.
 
 ```bash
-grep 'Warning' colour_selection_theory.log
+grep 'Warning' build/colour_selection_theory.log
 ```
 
 Common warnings:
