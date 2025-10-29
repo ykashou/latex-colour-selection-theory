@@ -1,0 +1,38 @@
+# Build directory
+build/
+
+# LaTeX build artifacts (if accidentally in other locations)
+*.aux
+*.log
+*.out
+*.bbl
+*.blg
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.nav
+*.snm
+*.vrb
+*.bcf
+*.run.xml
+*.alg
+*.loa
+
+# LaTeX temporary files
+*.bak
+*.sav
+*~
+.*.swp
+
+# Editor artifacts
+.vscode/
+.idea/
+*.code-workspace
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
